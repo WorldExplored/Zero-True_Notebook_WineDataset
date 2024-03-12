@@ -20,8 +20,8 @@ wine = load_wine()
 wine_df = pd.DataFrame(data=wine.data, columns=wine.feature_names)
 wine_df['wine_class'] = wine.target
 
-# Correctly mapping target names
-wine_df['wine_class'] = wine_df['wine_class'].apply(lambda x: wine.target_names[x])
+cultivar_names = {0: 'Cultivator_1', 1: 'Cultivator_2', 2: 'Cultivator_3'}
+wine_df['wine_class'] = wine_df['wine_class'].map(cultivar_names)
 
 # Define sliders
 alcohol_slider = zt.RangeSlider(id='alcohol', min=wine_df.alcohol.min(), max=wine_df.alcohol.max(), step=0.1, label='Alcohol')
